@@ -11,8 +11,6 @@
               type : "GET",
               dataType : "JSON",
               success : function(data){
-                console.log(data);
-                
                 jQuery('#pid').val(data.pid);
                 jQuery('#form_product_master').find('#p_name').val(data.p_name);
                 jQuery('#form_product_master').find('#p_desc').val(data.p_desc);
@@ -59,7 +57,7 @@
               order : [[ 0, "asc" ]],
               ajax: "{{ route('getAllProduct') }}",
               columns: [
-                {data:'DT_RowIndex', name:'DT_RowIndex'},
+                {data:'DT_RowIndex', name:'DT_RowIndex', orderable:false, searchable:false},
                 {data:'p_name', name :'p_name'},
                 {data:'p_desc', name :'p_desc'},
                 {data:'price', name :'price'},

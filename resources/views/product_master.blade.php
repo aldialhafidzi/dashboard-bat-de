@@ -44,7 +44,7 @@
                                     <table id="table_product_master" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th align="center" style="width:10%;">No</th>
+                                                <th>No</th>
                                                 <th>Product Name</th>
                                                 <th>Product Description</th>
                                                 <th>Price</th>

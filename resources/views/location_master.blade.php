@@ -46,7 +46,8 @@
                                 <table id="table_location" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th align="center" style="width:10%;">No</th>
+                                            <th>No</th>
+                                            <th>Kode</th>
                                             <th>Province</th>
                                             <th>Regency</th>
                                             <th>District</th>

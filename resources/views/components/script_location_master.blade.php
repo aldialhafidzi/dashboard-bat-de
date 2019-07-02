@@ -55,7 +55,8 @@
                 order : [[ 0, "asc" ]],
                 ajax: "{{ route('getAllLocation') }}",
                 columns: [
-                  {data:'DT_RowIndex', name:'id_province'},
+                  {data:'DT_RowIndex', name:'id_village'},
+                  {data: 'id_village', name:'id_village'},
                   {data:'province', name :'province'},
                   {data:'regency', name :'regency'},
                   {data:'district', name :'district'},
@@ -63,7 +64,7 @@
                   {data:'action', name :'action', orderable:false, searchable:false}
                 ],
                 columnDefs: [
-                  { className: 'text-center', targets: [0, 5] },
+                  { className: 'text-center', targets: [0, 1, 6] },
                 ],
                 // dom: 'lBfrtip',
               });

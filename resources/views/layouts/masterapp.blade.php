@@ -65,6 +65,7 @@
                              aria-expanded="false"> <i class="menu-icon fa fa-bar-chart-o"></i>Consumer Statistic</a>
                          <ul class="sub-menu children dropdown-menu">
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location') }}">Location</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.ktp') }}">Location By KTP</a></li>
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.product.type') }}">Current Product</a></li>
                             
                          </ul>

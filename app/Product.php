@@ -9,6 +9,9 @@ class Product extends Model
     
     protected $table = 'product_master';
     protected $primaryKey = 'pid';
+    protected $searchableColumns = ['pid', 'p_name', 'p_desc', 'price'];
+
+
 
     public function consumer()
     {

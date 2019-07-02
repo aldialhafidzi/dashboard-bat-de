@@ -19,11 +19,18 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/dashboard-consumer', 'ConsumerController@index')->name('dashboard.consumer');
+
+    // CONSUMER LOCATION BY CITY - KECAMATAN
     Route::get('/consumer-location', 'ConsumerController@locationsConsumer')->name('view.consumer.location');
-    Route::get('/product-type', 'ConsumerController@productType')->name('view.product.type');
-    Route::get('/get-product-type', 'ConsumerController@getProductType')->name('getProductType.consumer');
     Route::get('/get-city-consumer', 'ConsumerController@getCityConsumer')->name('getCity.consumer');
     Route::get('/get-district-consumer', 'ConsumerController@getDistrictConsumer')->name('getDistrict.consumer');
+    
+    // CONSUMER LOCATION BY KTP_ID
+    Route::get('/consumer-location-ktp', 'ConsumerController@locationKTPConsumer')->name('view.consumer.location.ktp');
+    
+    
+    Route::get('/product-type', 'ConsumerController@productType')->name('view.product.type');
+    Route::get('/get-product-type', 'ConsumerController@getProductType')->name('getProductType.consumer');
 
 
     

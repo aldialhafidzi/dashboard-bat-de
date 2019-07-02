@@ -35,6 +35,12 @@ class ConsumerController extends Controller
                                             'top_5_location'    => json_decode($top_5_location) ]);
     }
 
+    // LOCATION BY KTP FUNCTION
+    public function locationKTPConsumer(){
+        
+    }
+    // END OF LOCATION BY KTP
+
     // Location Of Consumer Function
     public function locationsConsumer(){
         $top_5_location     = Top_Customer_Location::distinct()->orderBy('total', 'DESC')->take(10)->get(['regency', 'total']);
