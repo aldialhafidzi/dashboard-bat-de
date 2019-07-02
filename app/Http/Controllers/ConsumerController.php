@@ -9,6 +9,7 @@ use App\Top_Customer_Location;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class ConsumerController extends Controller
 {
@@ -36,8 +37,41 @@ class ConsumerController extends Controller
     }
 
     // LOCATION BY KTP FUNCTION
-    public function locationKTPConsumer(){
-        
+    public function locationKTPConsumer()
+    {
+        // $top_5_location     = Top_Customer_Location::distinct()->orderBy('total', 'DESC')->take(10)->get(['regency', 'total']);
+        // dd(json_decode($top_5_location));
+
+        return view('location_stat_ktp', [   'judul'    => 'Consumer Location - BatDE',
+                                         'page'     => 'location_consumer_ktp']);
+    }
+
+    public function getLocationKTPConsumer()
+    {   
+        // Redis::set('name', 'asdasd');
+        // $values = Redis::lrange('names', 5, 10);
+        // Consumer::chunk(200, function ($consumers) {
+        //     foreach ($consumers as $consumer) {
+        //         Redis::set('ktp_id', $consumer->ktp_id);
+        //     }
+        // });
+        $values = Redis::keys('*');
+        // $values = Redis::lrange('laravel_database_ktp_id');
+        // $values = Redis::get('laravel_database_ktp_id');
+        // Consumer::chunk(100, function ($consumers) {
+        //     $counter = 1;
+        //     foreach ($consumers as $consumer) {
+        //         // $some_value = ($consumer->ktp_id > 0) ? 1 : 0;
+                
+        //         var_dump($consumer->ktp_id);
+        //         // might be more logic here
+        //         // $user->update(['some_other_field' => $some_value]);
+        //         if ($counter > 100){
+        //             break;
+        //         }
+        //     }
+        // });
+        dd($values);
     }
     // END OF LOCATION BY KTP
 

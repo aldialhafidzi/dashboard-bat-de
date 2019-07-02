@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'App\Console\Commands\DashboardQueryCommand',
+        'App\Console\Commands\StoreKTPToRedis'
     ];
 
     /**
@@ -25,7 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->exec('php artisan dashboard:query')->everyFiveMinutes();
-        $schedule->command('dashboard:query')->dailyAt('12:00');
+        // $schedule->command('dashboard:query')->everyFiveMinutes();
+        $schedule->command('command:storeKTPtoRedis')->daily();
         // $schedule->command('cache:clear')->everyMinutes()->sendOutputTo($filePath);
     }
 

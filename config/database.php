@@ -108,6 +108,21 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'pgsql_wilayah_2018' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => '103.43.128.182',
+            'port' => '5432',
+            'database' => 'wilayah_2018',
+            'username' => 'postgres',
+            'password' => 'postgres',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
@@ -153,7 +168,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'predis'),
-            'prefix' => Str::slug(env('APP_NAME', 'laravel'), '_').'_database_',
+            'prefix' => Str::slug(env('BATDE_REDIS', ''), '_').'',
         ],
 
         'default' => [
@@ -169,6 +184,17 @@ return [
             'port' => env('REDIS_PORT', 6379),
             'database' => env('REDIS_CACHE_DB', 1),
         ],
+
+    //     'clusters' => [
+    //         'default' => [
+    //             [
+    //                 'host' => env('REDIS_HOST', 'localhost'),
+    //                 'password' => env('REDIS_PASSWORD', null),
+    //                 'port' => env('REDIS_PORT', 6379),
+    //                 'database' => 0,
+    //             ],
+    //         ],
+    // ],
 
     ],
 

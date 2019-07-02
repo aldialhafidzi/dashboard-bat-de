@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function(){
     
     // CONSUMER LOCATION BY KTP_ID
     Route::get('/consumer-location-ktp', 'ConsumerController@locationKTPConsumer')->name('view.consumer.location.ktp');
-    
+    Route::get('/get-ktp', 'ConsumerController@getLocationKTPConsumer')->name('getKtp');
     
     Route::get('/product-type', 'ConsumerController@productType')->name('view.product.type');
     Route::get('/get-product-type', 'ConsumerController@getProductType')->name('getProductType.consumer');
