@@ -66,7 +66,7 @@ return [
         'pgsql_user' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => '103.43.128.182',
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => '5432',
             'database' => 'DB_User',
             'username' => 'postgres',
@@ -81,7 +81,7 @@ return [
         'pgsql_stat_consumer' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => '103.43.128.182',
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => '5432',
             'database' => 'DB_Stat',
             'username' => 'postgres',
@@ -96,7 +96,7 @@ return [
         'pgsql_BatDB' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => '103.43.128.182',
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => '5432',
             'database' => 'BatDB',
             'username' => 'postgres',
@@ -111,7 +111,7 @@ return [
         'pgsql_wilayah_2018' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => '103.43.128.182',
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => '5432',
             'database' => 'wilayah_2018',
             'username' => 'postgres',

@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-// use Cache;
+use Carbon\Carbon;
 use App\Wilayah_2018;
 use App\Consumer;
 use App\ValidConsumer;
@@ -46,102 +46,104 @@ class StoreKTPToRedis extends Command
      */
     public function handle()
     {
-        // Wilayah_2018::all
-        // $ss = Cache::get('name');
-        // $ss = Cache::get('name');
-        // dd($ss);
+
         // Wilayah_2018::chunk(200, function ($wilayah) {
         //     foreach ($wilayah as $data) {
         //         Redis::set("kode_wilayah:$data->kode", $data->nama);
-        //         echo($data->kode);
+        //         var_dump($data->kode);
         //     }
         // });
-        // Consumer::chunk(200, function ($wilayah) {
-
+        
+        // $result = Consumer::whereRaw('LENGTH(ktp_id) >= 16')->get();
+        // $ktp_consumer = array();
+        // Consumer::whereRaw('LENGTH(ktp_id) >= 16')->chunk(200, function ($wilayah) use($ktp_consumer) {
         //     foreach ($wilayah as $data) {
-        //         Redis::set("KTP:$data->kode", $data->nama);
-        //         echo($data->kode);
-        //     }
-            
+        //         $ktp_id = $data->ktp_id;
+        //         array_push($ktp_consumer, $ktp_id);
+        //         var_dump($data->ktp_id);
+        //     }    
         // });
+
+        // Redis::lpush('KTP-Consumer', $ktp_consumer);
+        // die('asdasd');
+
+        var_dump('Checking Data . . .');
+
         $length_data = Redis::llen('KTP-Consumer');
-        // dd($length_data);
         $values = Redis::command('lrange', ['KTP-Consumer', 0, $length_data]);
         
         $validWilayah       = 0;
         $invalidWilayah     = 0;
-
         $validBornCount     = 0;
         $invalidBornCount   = 0;
-
         $validKTP           = 0;
         $invalidKTP         = 0;
-
         $entryKtpReject     = [];
         $entryWilayahReject = [];
         $entryCountReject   = [];
 
 
-         function validateDate($date, $format = 'dmy')
-                {$d = DateTime::createFromFormat($format, $date); return $d && $d->format($format) === $date;}
-
+         function validateDate($date, $format = 'dmy'){
+             $d = DateTime::createFromFormat($format, $date); 
+             return $d && $d->format($format) === $date;
+         }
 
         function trimKtp($ktp) {
             $data = $ktp;
-            if ($data || $data === '') {
+            if ($data != null || $data == '') {
                 $data = (string)$data;
+                $data = rtrim($data, ' ');
                 $data = rtrim($data, '-');
                 $data = rtrim($data, '.');
                 $data = rtrim($data, ',');
-                $data = rtrim($data, '\+');
+                $data = rtrim($data, '+');
                 
                 $count_ = (int) (strlen($data));
 
-                echo($count_);
-                echo('-');
                 if ($count_ !== 16) {
-                    return null;
+                    return false;
                 }
 
-                $str = substr($data, 6, 2);
-                $tgl = (int)  $str;
-                $tgl = $tgl >= 40 ? ($tgl -= 40) : $tgl;
+                $str  = substr($data, 6, 2);
+                $tgl  = intval($str, $base = 10);
+
+                $tgl  = $tgl >= 40 ? ($tgl -= 40) : $tgl;
                 $date = (string)$tgl . substr($data, 8, 4);
-                $date = (int) $date;
-                $date = $date === 6 ? $date : "0$date";
+                $date = strlen($date) === 6 ? $date : "0$date";
                 
                 // CHECK VALIDASI TGL
-               
                 if(validateDate($date) == false){
-                    return null;
+                    return false;
                 }
                 // END OF VALIDASI TGL
-
             }
-            return $data;
+            return true;
         }
 
         
+
         foreach ($values as $key => $value) {
             $ktp = trimKtp($value);
-            if($ktp){
+            if($ktp == true){
                 $validKTP++;
                 $enam_digit_awal = substr($value, 0, 6);
-                if (Redis::exists("kode_wilayah:$enam_digit_awal")){
-                    $validWilayah++; 
+
+                if (Redis::exists("kode_wilayah:$enam_digit_awal") == 1){
+                    $validWilayah++;
                 }
                 else {
                     array_push($entryWilayahReject, $enam_digit_awal); 
                     $invalidWilayah++;
                 }
-                $bornTgl    = substr($value, 12, 4);
-                $bornCount  = (int) $bornTgl;
+
+                $bornCount      = substr($value, 12, 4);
+                $bornCount      = intval($bornCount, $base = 10);
         
-                if ($bornCount >= 50) {
+                if ($bornCount <= 50) {
                     $validBornCount++;
                 }
                 else {
-                    array_push($entryCountReject, $bornTgl);
+                    array_push($entryCountReject, $bornCount);
                     $invalidBornCount++;
                 }
             }
@@ -149,55 +151,48 @@ class StoreKTPToRedis extends Command
                 array_push($entryKtpReject, $value);
                 $invalidKTP++;
             }
-
-            echo($key."\r\n");
         }
 
         $data = [
-            'validKTP'          => $validKTP,
-            'invalidKTP'        => $invalidKTP,
-            'validWilayah'      => $validWilayah,  
-            'invalidWilayah'    => $invalidWilayah,
+            'valid_ktp'          => $validKTP,
+            'invalid_ktp'        => $invalidKTP,
+            'validwilayah'      => $validWilayah,  
+            'invalidwilayah'    => $invalidWilayah,
             'validcount'        => $validBornCount,
-            'invalidcount'      => $invalidBornCount
+            'invalidcount'      => $invalidBornCount,
+            'created_at'        => Carbon::now(),
+            'updated_at'        => Carbon::now()
         ];
 
         ValidConsumer::insert($data);
 
-        foreach ($entryKtpReject as $key => $value) {
-            $data = [
-                'ktp_id' => $value
-            ];
+        dd('KELAR');
 
-            EntryRejectKtp::insert($data);
+        // foreach ($entryKtpReject as $key => $value) {
+        //     $data = [
+        //         'ktp_id' => $value
+        //     ];
 
-        }
+        //     EntryRejectKtp::insert($data);
 
-        foreach ($entryWilayahReject as $key => $value) {
-            $data = [
-                'wilayah' => $value
-            ];
+        // }
 
-            EntryRejectWilayah::insert($data);
-        }
+        // foreach ($entryWilayahReject as $key => $value) {
+        //     $data = [
+        //         'wilayah' => $value
+        //     ];
 
-        foreach ($entryCountReject as $key => $value) {
-            $data = [
-                'date_reject_born' => $value
-            ];
+        //     EntryRejectWilayah::insert($data);
+        // }
 
-            EntryRejectBorn::insert($data);
-        }
+        // foreach ($entryCountReject as $key => $value) {
+        //     $data = [
+        //         'date_reject_born' => $value
+        //     ];
 
+        //     EntryRejectBorn::insert($data);
+        // }
 
-        // Redis::set('nama', 'oke');
-        // $value = Redis::keys('*');
-        dd('INI BARU BER!!!!');
-
-        // Redis::pipeline(function ($pipe) {
-        //     for ($i = 0; $i < 1000; $i++) {
-        //         $pipe->set("key:$i", $i);
-        //     }
-        // });
+        dd('INI BARU BERES!!!!');
     }
 }

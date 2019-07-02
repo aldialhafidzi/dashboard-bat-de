@@ -25,9 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->exec('php artisan dashboard:query')->everyFiveMinutes();
+        $schedule->exec('php artisan dashboard:query')->everyFiveMinutes();
         // $schedule->command('dashboard:query')->everyFiveMinutes();
-        $schedule->command('command:storeKTPtoRedis')->daily();
+        // $schedule->command('command:storeKTPtoRedis')->daily();
         // $schedule->command('cache:clear')->everyMinutes()->sendOutputTo($filePath);
     }
 
