@@ -150,16 +150,16 @@ class StoreKTPToRedis extends Command
                 $invalidKTP++;
             }
 
-            echo($value); echo('BELUM KELAR !');
+            echo($key."\r\n");
         }
 
         $data = [
+            'validKTP'          => $validKTP,
+            'invalidKTP'        => $invalidKTP,
             'validWilayah'      => $validWilayah,  
             'invalidWilayah'    => $invalidWilayah,
-            'validBornCount'    => $validBornCount,
-            'invalidBornCount'  => $invalidBornCount,
-            'validKTP'          => $validKTP,
-            'invalidKTP'        => $invalidKTP
+            'validcount'        => $validBornCount,
+            'invalidcount'      => $invalidBornCount
         ];
 
         ValidConsumer::insert($data);
