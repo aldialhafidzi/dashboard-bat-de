@@ -192,7 +192,7 @@ class StoreKTPToRedis extends Command
 
         // Redis::set('nama', 'oke');
         // $value = Redis::keys('*');
-        dd('INI BARU BERES!!!!');
+        dd('INI BARU BER!!!!');
 
         // Redis::pipeline(function ($pipe) {
         //     for ($i = 0; $i < 1000; $i++) {
