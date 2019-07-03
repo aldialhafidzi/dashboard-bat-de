@@ -9,6 +9,7 @@ use App\ValidConsumer;
 use App\EntryRejectKtp;
 use App\EntryRejectWilayah;
 use App\EntryRejectBorn;
+use App\Location_Consumer_Ktp;
 use DateTime;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Redis;
@@ -106,7 +107,6 @@ class StoreKTPToRedis extends Command
 
                 $str  = substr($data, 6, 2);
                 $tgl  = intval($str, $base = 10);
-
                 $tgl  = $tgl >= 40 ? ($tgl -= 40) : $tgl;
                 $date = (string)$tgl . substr($data, 8, 4);
                 $date = strlen($date) === 6 ? $date : "0$date";
@@ -125,10 +125,13 @@ class StoreKTPToRedis extends Command
         foreach ($values as $key => $value) {
             $ktp = trimKtp($value);
             if($ktp == true){
+
                 $validKTP++;
                 $enam_digit_awal = substr($value, 0, 6);
 
                 if (Redis::exists("kode_wilayah:$enam_digit_awal") == 1){
+                    $district = Redis::get("kode_wilayah:$enam_digit_awal");
+                    Redis::set("valid_KTP:$value", $district);
                     $validWilayah++;
                 }
                 else {
@@ -151,6 +154,7 @@ class StoreKTPToRedis extends Command
                 array_push($entryKtpReject, $value);
                 $invalidKTP++;
             }
+            var_dump($key);
         }
 
         $data = [
@@ -167,6 +171,19 @@ class StoreKTPToRedis extends Command
         ValidConsumer::insert($data);
 
         dd('KELAR');
+
+
+        // $data_mining = [];
+        // $wilayah_2018 = Redis::keys('kode_wilayah:*');
+        // foreach ($wilayah_2018 as $key => $item) {
+        //     $arr = explode(":", $item);
+        //     $getKTP = Redis::keys('valid_KTP:'.$arr[1].'*');
+        //     dd($getKTP);
+        //     $data_ktp = ['kode'     => $arr[1],
+        //                  'nama'     => Redis::get('kode_wilayah:'.$arr[1]),
+        //                  'count'    => count($getKTP)];
+        //     array_push($data_mining, $data_ktp);
+        // }
 
         // foreach ($entryKtpReject as $key => $value) {
         //     $data = [
