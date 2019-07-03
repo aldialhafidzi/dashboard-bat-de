@@ -123,6 +123,18 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'mongodb' => [
+        'driver' => 'mongodb',
+        'host' => '103.43.128.182',
+        'port' => '27017',
+        'database' => 'bat-statistic',
+        'username' => null,
+        'password' => null,
+        'options' => [
+            'database' => env('DB_ADMIN_DATABASE', 'admin'),
+        ],
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),

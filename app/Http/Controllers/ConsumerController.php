@@ -6,7 +6,9 @@ use DataTables;
 use App\Consumer;
 use App\Wilayah_2018;
 use App\Dashboard_Consumer;
-use App\Top_Customer_Location;
+use App\Top_Consumer_Regency;
+use App\Top_Consumer_District;
+use App\MongoDB_Location_Stat; 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +20,7 @@ class ConsumerController extends Controller
     // Dashboard Consumer Function
     public function index()
     {
-        $top_5_location     = Top_Customer_Location::orderBy('total', 'DESC')->take(5)->get();
+        $top_5_location     = Top_Consumer_Regency::orderBy('total', 'DESC')->take(5)->get();
         $updateWizard       = Dashboard_Consumer::orderBy('created_at', 'DESC')->take(5)->get();
         $newUpdate          = Dashboard_Consumer::orderBy('created_at', 'DESC')->first();
         $total_customer     = $newUpdate->total_customer;
@@ -40,24 +42,38 @@ class ConsumerController extends Controller
     // LOCATION BY KTP FUNCTION
     public function locationKTPConsumer()
     {
+        $data = MongoDB_Location_Stat::all();
+        // $users = MongoDB_Location_Stat::collection('ktp_stats')->get();
+        foreach ($data as $key => $value) {
+            dd($data[0]->data);
+        }
+        dd(json_decode($data));
         return view('location_stat_ktp', ['judul'    => 'Consumer Location - BatDE',
                                           'page'     => 'location_consumer_ktp']);
     }
 
     public function getLocationKTPConsumer()
-    {   
+    {
+
        return 'haha';
     }
     // END OF LOCATION BY KTP
 
     // Location Of Consumer Function
     public function locationsConsumer(){
-        $top_5_location     = Top_Customer_Location::distinct()->orderBy('total', 'DESC')->take(10)->get(['regency', 'total']);
-        // dd(json_decode($top_5_location));
 
-        return view('location_stat', [   'judul'    => 'Consumer Location - BatDE',
-                                         'page'     => 'location_consumer',
-                                         'top_5_location'   => json_decode($top_5_location) ]);
+        $top_regency        = Top_Consumer_Regency::distinct()
+                                                ->orderBy('total', 'DESC')->take(10)
+                                                ->get(['regency', 'total']);
+
+        $top_district       = Top_Consumer_District::distinct()
+                                                ->orderBy('total', 'DESC')->take(10)
+                                                ->get(['district', 'total']);
+
+        return view('location_stat', [   'judul'            => 'Consumer Location - BatDE',
+                                         'page'             => 'location_consumer',
+                                         'top_regency'      => json_decode($top_regency),
+                                         'top_district'     => json_decode($top_district)]);
     }
 
     public function getDistrictConsumer()

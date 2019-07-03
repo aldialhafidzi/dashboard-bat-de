@@ -16,7 +16,7 @@ use App\User_Quiz;
 use App\Log_Game;
 use \stdClass;
 use App\Dashboard_Consumer;
-use App\Top_Customer_Location;
+use App\Top_Consumer_Regency;
 use Illuminate\Console\Command;
 
 class DashboardQueryCommand extends Command
@@ -167,7 +167,7 @@ class DashboardQueryCommand extends Command
             // END OF TOP LOCATION CUSTOMER
 
             // CLEAR TABLE DULU
-            Top_Customer_Location::truncate();
+            Top_Consumer_Regency::truncate();
             // END CLEAR TABLE
             // BEGIN INSERT TO TOP LOCATION
             foreach ($top_location as $key => $value) {
@@ -178,7 +178,7 @@ class DashboardQueryCommand extends Command
                     'updated_at'  => Carbon::now()
                 ];
 
-                Top_Customer_Location::insert($data);
+                Top_Consumer_Regency::insert($data);
             }
             // END OF INSERT TO TOP LOCATION 
 

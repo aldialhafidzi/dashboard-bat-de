@@ -28,83 +28,91 @@
 <div class="content mt-3">
   <div class="row">
 
-      <div class="col-sm-6">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="mb-3">Team Commits </h4>
-                  <canvas id="team-chart"></canvas>
-              </div>
-          </div>
-      </div>
-
-      <div class="col-sm-6">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="mb-3">Team Commits </h4>
-                  <canvas id="team-chart-2"></canvas>
-              </div>
-          </div>
-      </div>
-
     <div class="col-sm-6">
-      <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">City Table</strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="table_location_stat_city" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>City Area</th>
-                                            <th>Count</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="mb-3">Statistic / Regency</h4>
+              <canvas id="team-chart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="animated fadeIn">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <strong class="card-title">City Table</strong>
                     </div>
-                </div>
-      </div>
-
-    </div>
-
-    
-
-    <div class="col-sm-6">
-      <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">District Table</strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="table_location_stat_district" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>District Area</th>
-                                            <th>Count</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                      <table id="table_location_stat_city" class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>City Area</th>
+                            <th>Count</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
                     </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
       </div>
+      
     </div>
 
 
+    <div class="col-sm-6">
 
+      <div class="row">
+
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="mb-3">Statistic / District </h4>
+              <canvas id="team-chart-2"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="animated fadeIn">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <strong class="card-title">District Table</strong>
+                  </div>
+                  <div class="card-body">
+                    <table id="table_location_stat_district" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>District Area</th>
+                          <th>Count</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   
 
