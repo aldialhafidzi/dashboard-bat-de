@@ -31,8 +31,8 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-3">Team Commits </h4>
-                    <canvas id="team-chart"></canvas>
+                    <h4 class="mb-3">Statistic </h4>
+                    <canvas id="team-chart-consumer-location-ktp"></canvas>
                 </div>
             </div>
         </div>
@@ -52,18 +52,33 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">City Table</strong>
+                                <strong class="card-title">District Table</strong>
                             </div>
                             <div class="card-body">
                                 <table id="table_location_by_ktp" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>City Area</th>
+                                            <th>Kode</th>
+                                            <th>District Area</th>
                                             <th>Count</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{-- @php --}}
+                                            // $i = 1;
+                                        // @endphp
+                                        {{-- @foreach ($data as $item) --}}
+                                            {{-- <tr> --}}
+                                                {{-- <td>{{$i}}</td> --}}
+                                                {{-- <td>{{$item->code}}</td> --}}
+                                                {{-- <td>{{$item->name}}</td> --}}
+                                                {{-- <td>{{$item->count}}</td> --}}
+                                            {{-- </tr> --}}
+                                        {{-- @php --}}
+                                            // $i++;
+                                        // @endphp
+                                        {{-- @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>

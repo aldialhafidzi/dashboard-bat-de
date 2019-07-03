@@ -61,10 +61,23 @@
 
             });
 
-            // VIEW
-
-            
-            
+            var table_location_by_ktp = jQuery('#table_location_by_ktp').DataTable({
+              processing:false,
+              serverSide:false,
+              order : [[ 3, "dsc" ]],
+              ajax: "{{ route('getKtp') }}",
+              columns: [
+              {data:'DT_RowIndex', name:'DT_RowIndex'},
+              {data:'code', name :'code'},
+              {data:'name', name:'name'},
+              {data:'count', name :'count'}
+              ],
+              columnDefs: [
+              { className: 'text-center', targets: [0] },
+              { render: jQuery.fn.dataTable.render.number(".", ".", 0,), targets: [2] },
+              {"targets": '_all', "defaultContent": ""},
+              ],
+            });
             
         })(jQuery);
 </script>

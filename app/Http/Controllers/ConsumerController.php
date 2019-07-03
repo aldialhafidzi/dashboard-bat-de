@@ -42,20 +42,37 @@ class ConsumerController extends Controller
     // LOCATION BY KTP FUNCTION
     public function locationKTPConsumer()
     {
-        $data = MongoDB_Location_Stat::all();
-        // $users = MongoDB_Location_Stat::collection('ktp_stats')->get();
-        foreach ($data as $key => $value) {
-            dd($data[0]->data);
+        $data       = MongoDB_Location_Stat::all();
+        $data_      = $data[0]->data;
+
+        function build_sorter($key) {
+            return function ($b, $a) use ($key) {
+                return strnatcmp($a[$key], $b[$key]);
+            };
         }
-        dd(json_decode($data));
+
+        usort($data_, build_sorter('count'));
+        $top_district = [];
+        $top_district[0] = $data_[0];
+        $top_district[1] = $data_[1];
+        $top_district[2] = $data_[2];
+        $top_district[3] = $data_[3];
+        $top_district[4] = $data_[4];
+
+        // dd($top_district[0]['code']);
+
         return view('location_stat_ktp', ['judul'    => 'Consumer Location - BatDE',
-                                          'page'     => 'location_consumer_ktp']);
+                                          'page'     => 'location_consumer_ktp',
+                                          'top_district' => $top_district]);
     }
 
     public function getLocationKTPConsumer()
     {
-
-       return 'haha';
+        // $users = MongoDB_Location_Stat::orderBy('data', 'desc')->get();
+        $data       = MongoDB_Location_Stat::all();
+        $datatables = Datatables::of($data[0]->data)
+                        ->addIndexColumn();
+        return $datatables->make(true);
     }
     // END OF LOCATION BY KTP
 

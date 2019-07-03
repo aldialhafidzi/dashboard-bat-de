@@ -215,6 +215,11 @@
     @endif
 
 
+    @if ($page =='location_consumer_ktp')
+        @include('components.script_stat_location_ktp')
+    @endif
+
+
 </body>
 
 </html>
