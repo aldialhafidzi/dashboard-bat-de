@@ -38,7 +38,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="pull-left btn-group btn-group-sm" role="group">
-                                        <button type="button" class="btn btn-success product-master-export-excel"> <span> <i class="fas fa-file-excel"></i> </span>&nbsp; Export &nbsp;</button>
+                                        <button type="button" href="{{url('location-export-excel')}}" class="btn btn-success product-master-export-excel"> <span> <i class="fas fa-file-excel"></i> </span>&nbsp; Export &nbsp;</button>
                                         <button type="button" class="btn btn-primary" onclick="tambahLocationForm();"> <span> <i class="fa fa fa-plus"></i> </span>&nbsp; Add Data &nbsp;</button>
                                     </div>
                             </div>

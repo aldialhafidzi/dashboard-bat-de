@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <title>BAT - Dashboard</title>
+    <meta name="description" content="BAT - Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="{{ URL::asset('apple-icon.png') }}">
@@ -65,6 +65,10 @@
                              aria-expanded="false"> <i class="menu-icon fa fa-bar-chart-o"></i>Consumer Statistic</a>
                          <ul class="sub-menu children dropdown-menu">
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location') }}">Location</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.121') }}">Location By 121</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.event') }}">Location By Event</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.ncp') }}">Location By NCP</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.ss') }}">Location By SS</a></li>
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.ktp') }}">Location By KTP</a></li>
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.product.type') }}">Current Product</a></li>
                             
@@ -214,9 +218,24 @@
         @include('components.script_stat_location')
     @endif
 
-
     @if ($page =='location_consumer_ktp')
         @include('components.script_stat_location_ktp')
+    @endif
+
+    @if ($page =='location_consumer_ncp')
+        @include('components.script_stat_location_ncp')
+    @endif
+
+    @if ($page =='location_consumer_ss')
+        @include('components.script_stat_location_ss')
+    @endif
+
+    @if ($page =='location_consumer_event')
+        @include('components.script_stat_location_event')
+    @endif
+
+    @if ($page =='location_consumer_121')
+        @include('components.script_stat_location_121')
     @endif
 
 

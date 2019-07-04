@@ -267,7 +267,7 @@
                 type: 'doughnut',
                 data: {
                     datasets: [ {
-                        data: [80, 20 ],
+                        data: [{{ $t_male}}, {{$t_female}} ],
                         backgroundColor: [
                                             "rgba(99, 193, 222, 0.973)",
                                             "rgba(248, 107, 107, 0.979)"

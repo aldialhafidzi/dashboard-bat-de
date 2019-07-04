@@ -42,11 +42,11 @@
             });
 
 
-            var table_location_stat_district = jQuery('#table_location_stat_district').DataTable({
+            var table_location_by_ncp = jQuery('#table_location_by_ncp').DataTable({
               processing:false,
               serverSide:false,
               order : [[ 0, "asc" ]],
-              ajax: "{{ route('getDistrict.consumer') }}",
+              ajax: "{{ route('getNcp') }}",
               columns: [
                 {data:'DT_RowIndex', name:'DT_RowIndex'},
                 {data:'location.regency', name :'location.regency'},
@@ -59,6 +59,63 @@
               ],
               // dom: 'lBfrtip',
 
+            });
+
+            var table_location_by_ss = jQuery('#table_location_by_ss').DataTable({
+            processing:false,
+            serverSide:false,
+            order : [[ 0, "asc" ]],
+            ajax: "{{ route('getSs') }}",
+            columns: [
+            {data:'DT_RowIndex', name:'DT_RowIndex'},
+            {data:'location.regency', name :'location.regency'},
+            {data:'jumlah', name :'jumlah'}
+            ],
+            columnDefs: [
+            { className: 'text-center', targets: [0] },
+            { render: jQuery.fn.dataTable.render.number(".", ".", 0,), targets: [2] },
+            {"targets": '_all', "defaultContent": ""},
+            ],
+            // dom: 'lBfrtip',
+            
+            });
+
+            var table_location_by_event = jQuery('#table_location_by_event').DataTable({
+            processing:false,
+            serverSide:false,
+            order : [[ 0, "asc" ]],
+            ajax: "{{ route('getEvent') }}",
+            columns: [
+            {data:'DT_RowIndex', name:'DT_RowIndex'},
+            {data:'location.regency', name :'location.regency'},
+            {data:'jumlah', name :'jumlah'}
+            ],
+            columnDefs: [
+            { className: 'text-center', targets: [0] },
+            { render: jQuery.fn.dataTable.render.number(".", ".", 0,), targets: [2] },
+            {"targets": '_all', "defaultContent": ""},
+            ],
+            // dom: 'lBfrtip',
+            
+            });
+
+            var table_location_by_121 = jQuery('#table_location_by_121').DataTable({
+            processing:false,
+            serverSide:false,
+            order : [[ 0, "asc" ]],
+            ajax: "{{ route('get121') }}",
+            columns: [
+            {data:'DT_RowIndex', name:'DT_RowIndex'},
+            {data:'location.regency', name :'location.regency'},
+            {data:'jumlah', name :'jumlah'}
+            ],
+            columnDefs: [
+            { className: 'text-center', targets: [0] },
+            { render: jQuery.fn.dataTable.render.number(".", ".", 0,), targets: [2] },
+            {"targets": '_all', "defaultContent": ""},
+            ],
+            // dom: 'lBfrtip',
+            
             });
 
             var table_location_by_ktp = jQuery('#table_location_by_ktp').DataTable({
@@ -77,6 +134,23 @@
               { render: jQuery.fn.dataTable.render.number(".", ".", 0,), targets: [2] },
               {"targets": '_all', "defaultContent": ""},
               ],
+            });
+
+            var table_location_stat_district = jQuery('#table_location_stat_district').DataTable({
+            processing:false,
+            serverSide:false,
+            order : [[ 0, "asc" ]],
+            ajax: "{{ route('getDistrict.consumer') }}",
+            columns: [
+            {data:'DT_RowIndex', name:'DT_RowIndex'},
+            {data:'location.regency', name :'location.regency'},
+            {data:'jumlah', name :'jumlah'}
+            ],
+            columnDefs: [
+            { className: 'text-center', targets: [0] },
+            { render: jQuery.fn.dataTable.render.number(".", ".", 0,), targets: [2] },
+            {"targets": '_all', "defaultContent": ""},
+            ],
             });
             
         })(jQuery);

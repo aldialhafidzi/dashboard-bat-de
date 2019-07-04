@@ -39,6 +39,106 @@ class ConsumerController extends Controller
                                             'top_5_location'    => json_decode($top_5_location) ]);
     }
 
+    // LOCATION BY 121 FUNCTION
+    public function location121Consumer()
+    {
+        $total_data = Consumer::where('source','121')->count();
+        return view('location_stat_121', ['judul'       => 'Consumer Location - BatDE',
+                                          'page'        => 'location_consumer_121',
+                                          'data_chart'  => '',
+                                          'total_data'  => $total_data]);
+    }
+
+    public function getLocation121Consumer()
+    {
+        $data          = Consumer::selectRaw('city, count(*) as jumlah')
+                                        ->groupBy('city')
+                                        ->with(['location'])
+                                        ->where('source', '121')
+                                        ->orderByRaw('jumlah DESC')
+                                        ->get();
+
+        $datatables = Datatables::of($data)
+                        ->addIndexColumn();
+        return $datatables->make(true);   
+    }
+    // END OF LOCATION BY 121
+
+    // LOCATION BY EVENT FUNCTION
+    public function locationEventConsumer()
+    {
+        $total_data = Consumer::where('source','121')->count();
+        return view('location_stat_event', ['judul'       => 'Consumer Location - BatDE',
+                                          'page'        => 'location_consumer_event',
+                                          'data_chart'  => '',
+                                          'total_data'  => $total_data]);
+    }
+
+    public function getLocationEventConsumer()
+    {
+        $data          = Consumer::selectRaw('city, count(*) as jumlah')
+                                        ->groupBy('city')
+                                        ->with(['location'])
+                                        ->where('source', 'event')
+                                        ->orderByRaw('jumlah DESC')
+                                        ->get();
+
+        $datatables = Datatables::of($data)
+                        ->addIndexColumn();
+        return $datatables->make(true);   
+    }
+    // END OF LOCATION BY EVENT
+
+    // LOCATION BY SS FUNCTION
+    public function locationSSConsumer()
+    {
+        $total_data = Consumer::where('source','121')->count();
+        return view('location_stat_ss', ['judul'       => 'Consumer Location - BatDE',
+                                          'page'        => 'location_consumer_ss',
+                                          'data_chart'  => '',
+                                          'total_data'  => $total_data]);
+    }
+
+    public function getLocationSSConsumer()
+    {
+        $data          = Consumer::selectRaw('city, count(*) as jumlah')
+                                        ->groupBy('city')
+                                        ->with(['location'])
+                                        ->where('source', 'ss')
+                                        ->orderByRaw('jumlah DESC')
+                                        ->get();
+
+        $datatables = Datatables::of($data)
+                        ->addIndexColumn();
+        return $datatables->make(true);   
+    }
+    // END OF LOCATION BY SS
+
+    // LOCATION BY NCP FUNCTION
+    public function locationNCPConsumer()
+    {
+        $total_data = Consumer::where('source','121')->count();
+        return view('location_stat_ncp', ['judul'       => 'Consumer Location - BatDE',
+                                          'page'        => 'location_consumer_ncp',
+                                          'data_chart'  => '',
+                                          'total_data'  => $total_data]);
+    }
+
+    public function getLocationNCPConsumer()
+    {
+        $data          = Consumer::selectRaw('city, count(*) as jumlah')
+                                        ->groupBy('city')
+                                        ->with(['location'])
+                                        ->where('source', 'ncp')
+                                        ->orderByRaw('jumlah DESC')
+                                        ->get();
+
+        $datatables = Datatables::of($data)
+                        ->addIndexColumn();
+        return $datatables->make(true);   
+    }
+    // END OF LOCATION BY NCP
+
     // LOCATION BY KTP FUNCTION
     public function locationKTPConsumer()
     {
