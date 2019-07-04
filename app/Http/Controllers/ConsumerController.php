@@ -314,14 +314,18 @@ class ConsumerController extends Controller
             ->orderByRaw('jumlah DESC')->take(5)
             ->get();
 
-        $total_data = Consumer::whereNotNull('current_product')->count();
-        $total_data_invalid = Consumer::whereNull('current_product')->count();
+        $total_consumer     = Consumer::count();
+        $total_data_valid   = Consumer::join('product_master', 'consumer.current_product', '=', 'product_master.pid')->count();
+        $total_data_invalid = (int)$total_consumer - (int)$total_data_valid;
+        // $total_data_invalid = Consumer::rightJoin('product_master', 'consumer.current_product', '=', 'product_master.pid')->count();
+        // $total_data_invalid = Consumer::whereNull('current_product')->count();
 
         return view('product_type', [
             'judul' => 'Product Type - BatDE',
             'page'  => 'product_consumer',
             'products' => json_decode($product),
-            'total_data'    => $total_data,
+            'total_data'    => $total_consumer,
+            'total_data_valid'  => $total_data_valid,
             'total_data_invalid' => $total_data_invalid
         ]);
     }

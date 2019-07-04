@@ -19,7 +19,7 @@
             for (let index = 0; index <= 4; index++) {total_regency [index]=0;name_regency[index]='' ;}
         @endif
     
-                var ctx = document.getElementById( "team-chart-consumer-location-event" );
+                var ctx = document.getElementById( "team-chart-consumer-location-event-district");
                   ctx.height = 150;
                   var myChart = new Chart( ctx, {
                       type: 'line',
@@ -91,7 +91,7 @@
                   } );
 
 
-                  var ctx = document.getElementById( "team-chart-consumer-location-district" );
+                  var ctx = document.getElementById( "team-chart-consumer-location-event" );
                   ctx.height = 150;
                   var myChart = new Chart( ctx, {
                       type: 'line',

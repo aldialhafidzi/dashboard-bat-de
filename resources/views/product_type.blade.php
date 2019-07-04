@@ -33,11 +33,11 @@
 
         <div class="row">
 
-          <div class="col-sm-6">
-                    <div class="card bg-flat-color-1 text-light">
+          <div class="col-sm-4">
+                    <div class="card bg-flat-color-3 text-light">
                         <div class="card-body">
                             <div class="h4 m-0">{{ $total_data }}</div>
-                            <div>Valid Current Product</div>
+                            <div>Total Consumer</div>
                             <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;"
                                 aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                             <small class="text-light"></small>
@@ -45,13 +45,25 @@
                     </div>
             </div>
 
-            <div class="col-sm-6">
-              <div class="card bg-flat-color-3 text-light">
+            <div class="col-sm-4">
+              <div class="card bg-flat-color-1 text-light">
                 <div class="card-body">
-                  <div class="h4 m-0">{{ $total_data_invalid }}</div>
-                  <div>Invalid Current Product</div>
+                  <div class="h4 m-0">{{ $total_data_valid }}</div>
+                  <div>Valid Product</div>
                   <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;" aria-valuenow="20"
                     aria-valuemin="0" aria-valuemax="100"></div>
+                  <small class="text-light"></small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="card bg-flat-color-4 text-light">
+                <div class="card-body">
+                  <div class="h4 m-0">{{ $total_data_invalid }}</div>
+                  <div>Invalid Product</div>
+                  <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;"
+                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                   <small class="text-light"></small>
                 </div>
               </div>
