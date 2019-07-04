@@ -22,18 +22,53 @@
     </div>
   </div>
 </div>
+
 {{-- END BREADCUMB --}}
 
 {{-- BEGIN CONTENT --}}
 <div class="content mt-3">
   <div class="row">
+
       <div class="col-sm-6">
-          <div class="card">
-              <div class="card-body">
+
+        <div class="row">
+
+          <div class="col-sm-6">
+                    <div class="card bg-flat-color-1 text-light">
+                        <div class="card-body">
+                            <div class="h4 m-0">{{ $total_data }}</div>
+                            <div>Valid Current Product</div>
+                            <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;"
+                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                            <small class="text-light"></small>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="card bg-flat-color-3 text-light">
+                <div class="card-body">
+                  <div class="h4 m-0">{{ $total_data_invalid }}</div>
+                  <div>Invalid Current Product</div>
+                  <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;" aria-valuenow="20"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                  <small class="text-light"></small>
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
                   <h4 class="mb-3">Team Commits </h4>
                   <canvas id="team-chart-product-type"></canvas>
+                </div>
               </div>
-          </div>
+            </div>
+
+        </div>
+
+          
       </div>
 
     <div class="col-sm-6">

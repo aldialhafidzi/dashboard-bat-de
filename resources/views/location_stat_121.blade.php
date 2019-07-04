@@ -32,59 +32,107 @@
         <div class="col-sm-12">
             <div class="row">
 
-                <div class="col-lg-3">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card bg-flat-color-2 text-light">
+                        <div class="card-body">
+                            <div class="h4 m-0">{{ $total_data }}</div>
+                            <div>Total Location 121</div>
+                            <div class="progress-bar bg-light mt-2 mb-2" role="progressbar" style="width: 20%; height: 5px;"
+                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                            <small class="text-light"></small>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="card">
-                            <div class="card-body">
-                                <div class="stat-widget-one pull-left">
-                                    <div class="stat-icon dib"><i class="ti-user text-info border-info"></i></div>
-                                    <div class="stat-content dib">
-                                        <div class="stat-text">Total Location 121</div>
-                                        <div class="stat-digit" >{{ $total_data }} </div>
+                        <div class="card-body">
+                            <h4 class="mb-3">Statistic </h4>
+                            <canvas id="team-chart-consumer-location-121"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="mb-3">Statistic </h4>
+                            <canvas id="team-chart-consumer-location-121-district"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-12">
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">Regency Table</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="table_location_by_121" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Regency Area</th>
+                                                    <th>Count</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9"> </div>
-        </div>
 
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="mb-3">Statistic </h4>
-                    <canvas id="team-chart-consumer-location-121"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Regency Table</strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="table_location_by_121" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Regency Area</th>
-                                            <th>Count</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                <div class="col-sm-6">
+                    <div class="animated fadeIn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">District Table</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="table_location_by_121_district" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>District Area</th>
+                                                    <th>Count</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
+
+        
+
+        
 
 
 

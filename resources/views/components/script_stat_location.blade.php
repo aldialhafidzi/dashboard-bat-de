@@ -42,7 +42,7 @@
 
                   
 
-                var ctx = document.getElementById( "team-chart" );
+                var ctx = document.getElementById("team-chart");
                   ctx.height = 150;
                   var myChart = new Chart( ctx, {
                       type: 'line',

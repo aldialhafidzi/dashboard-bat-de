@@ -35,23 +35,25 @@ Route::middleware(['auth'])->group(function () {
     // CONSUMER LOCATION BY NCP
     Route::get('/consumer-location-ncp', 'ConsumerController@locationNCPConsumer')->name('view.consumer.location.ncp');
     Route::get('/get-ncp', 'ConsumerController@getLocationNCPConsumer')->name('getNcp');
+    Route::get('/get-ncp-district', 'ConsumerController@getDistrictNCPConsumer')->name('getNcpDistrict');
 
     // CONSUMER LOCATION BY SS
     Route::get('/consumer-location-ss', 'ConsumerController@locationSSConsumer')->name('view.consumer.location.ss');
     Route::get('/get-ss', 'ConsumerController@getLocationSSConsumer')->name('getSs');
+    Route::get('/get-ss-district', 'ConsumerController@getDistrictSSConsumer')->name('getSsDistrict');
 
     // CONSUMER LOCATION BY Event
     Route::get('/consumer-location-event', 'ConsumerController@locationEventConsumer')->name('view.consumer.location.event');
     Route::get('/get-event', 'ConsumerController@getLocationEventConsumer')->name('getEvent');
+    Route::get('/get-event-district', 'ConsumerController@getDistrictEventConsumer')->name('getEventDistrict');
 
     // CONSUMER LOCATION BY 121
     Route::get('/consumer-location-121', 'ConsumerController@location121Consumer')->name('view.consumer.location.121');
     Route::get('/get-121', 'ConsumerController@getLocation121Consumer')->name('get121');
-    
+    Route::get('/get-121-district', 'ConsumerController@getDistrict121Consumer')->name('get121district');
+
     Route::get('/product-type', 'ConsumerController@productType')->name('view.product.type');
     Route::get('/get-product-type', 'ConsumerController@getProductType')->name('getProductType.consumer');
-
-
 
     Route::resource('product', 'ProductMasterController');
     Route::get('/get-product-master', 'ProductMasterController@getAllProduct')->name('getAllProduct');
