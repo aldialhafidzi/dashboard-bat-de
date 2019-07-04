@@ -13,9 +13,11 @@ Route::get('/getdata', 'HomeController@getAllData')->name('all.data');
 //     return view('auth.passwords.reset', ['token'=> 'hahaha', 'message' => 'hehehe']);
 // });
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
 
-    Route::get('/', function () {return redirect('/home');});
+    Route::get('/', function () {
+        return redirect('/home');
+    });
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/dashboard-consumer', 'ConsumerController@index')->name('dashboard.consumer');
@@ -24,7 +26,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/consumer-location', 'ConsumerController@locationsConsumer')->name('view.consumer.location');
     Route::get('/get-city-consumer', 'ConsumerController@getCityConsumer')->name('getCity.consumer');
     Route::get('/get-district-consumer', 'ConsumerController@getDistrictConsumer')->name('getDistrict.consumer');
-    
+
     // CONSUMER LOCATION BY KTP_ID
     Route::get('/consumer-location-ktp', 'ConsumerController@locationKTPConsumer')->name('view.consumer.location.ktp');
     Route::get('/get-ktp', 'ConsumerController@getLocationKTPConsumer')->name('getKtp');
@@ -50,12 +52,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/get-product-type', 'ConsumerController@getProductType')->name('getProductType.consumer');
 
 
-    
+
     Route::resource('product', 'ProductMasterController');
     Route::get('/get-product-master', 'ProductMasterController@getAllProduct')->name('getAllProduct');
+    Route::get('product-export-excel', 'ProductMasterController@export_excel');
 
     Route::resource('location', 'LocationController');
     Route::get('/get-location', 'LocationController@getAllLocation')->name('getAllLocation');
+    Route::get('location-export-excel', 'LocationController@export_excel');
     Route::get('/get-district', 'LocationController@getDistrict')->name('getDistrict');
-
 });

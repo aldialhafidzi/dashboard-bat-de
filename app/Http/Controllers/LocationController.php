@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DataTables;
 use App\Location;
+use App\Exports\LocationExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -15,9 +17,10 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return view('location_master', [ 'judul' => 'Dashboard BatDE',
-                                         'page'  => 'location_master'
-                            ]);
+        return view('location_master', [
+            'judul' => 'Dashboard BatDE',
+            'page'  => 'location_master'
+        ]);
     }
 
     /**
@@ -122,11 +125,16 @@ class LocationController extends Controller
         $location     = Location::select('*');
 
         $datatables   = Datatables::of($location)
-                            ->addIndexColumn()
-                            ->addColumn('action', function($location){
-                                    return '<a onclick="editLocationForm('.$location->id_village.')" style="color : #FFF;" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit"></span> Edit</a>'.' '.
-                                            '<a onclick="deleteLocationForm('.$location->id_village.')" style="color : #FFF;" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus_data" data-backdrop="static" data-keyboard="false"><span class="glyphicon glyphicon-trash"></span> Delete</a>';
-                                    });
+            ->addIndexColumn()
+            ->addColumn('action', function ($location) {
+                return '<a onclick="editLocationForm(' . $location->id_village . ')" style="color : #FFF;" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit"></span> Edit</a>' . ' ' .
+                    '<a onclick="deleteLocationForm(' . $location->id_village . ')" style="color : #FFF;" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus_data" data-backdrop="static" data-keyboard="false"><span class="glyphicon glyphicon-trash"></span> Delete</a>';
+            });
         return $datatables->make(true);
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new LocationExport, 'Locations.xlsx');
     }
 }
