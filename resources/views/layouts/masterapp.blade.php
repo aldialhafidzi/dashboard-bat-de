@@ -65,6 +65,10 @@
                              aria-expanded="false"> <i class="menu-icon fa fa-bar-chart-o"></i>Consumer Statistic</a>
                          <ul class="sub-menu children dropdown-menu">
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location') }}">Location</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.ncp') }}">Location By NCP</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.121') }}">Location By 121</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.event') }}">Location By Event</a></li>
+                             <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.ss') }}">Location By SS</a></li>
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.consumer.location.ktp') }}">Location By KTP</a></li>
                              <li><i class="menu-icon fa fa-bar-chart-o"></i><a href="{{ route('view.product.type') }}">Current Product</a></li>
                             
@@ -214,11 +218,9 @@
         @include('components.script_stat_location')
     @endif
 
-
     @if ($page =='location_consumer_ktp')
         @include('components.script_stat_location_ktp')
     @endif
-
 
 </body>
 

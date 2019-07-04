@@ -41,6 +41,81 @@
 
             });
 
+            var table_location_stat_city_121 = jQuery('#table_location_stat_city_121').DataTable({
+              processing:false,
+              serverSide:false,
+              order : [[ 0, "asc" ]],
+              ajax: "{{ route('getCity121.consumer') }}",
+              columns: [
+                {data:'DT_RowIndex', name:'DT_RowIndex'},
+                {data:'location.regency', name :'location.regency'},
+                {data:'jumlah', name :'jumlah'}
+              ],
+              columnDefs: [
+                { className: 'text-center', targets: [0] },
+                { render: jQuery.fn.dataTable.render.number(".", ".", 0,),  targets: [2] },
+                {"targets": '_all', "defaultContent": ""},
+              ],
+              // dom: 'lBfrtip',
+
+            });
+
+            var table_location_stat_city_event = jQuery('#table_location_stat_city_event').DataTable({
+              processing:false,
+              serverSide:false,
+              order : [[ 0, "asc" ]],
+              ajax: "{{ route('getCityEvent.consumer') }}",
+              columns: [
+                {data:'DT_RowIndex', name:'DT_RowIndex'},
+                {data:'location.regency', name :'location.regency'},
+                {data:'jumlah', name :'jumlah'}
+              ],
+              columnDefs: [
+                { className: 'text-center', targets: [0] },
+                { render: jQuery.fn.dataTable.render.number(".", ".", 0,),  targets: [2] },
+                {"targets": '_all', "defaultContent": ""},
+              ],
+              // dom: 'lBfrtip',
+
+            });
+
+            var table_location_stat_city_ss = jQuery('#table_location_stat_city_ss').DataTable({
+              processing:false,
+              serverSide:false,
+              order : [[ 0, "asc" ]],
+              ajax: "{{ route('getCitySS.consumer') }}",
+              columns: [
+                {data:'DT_RowIndex', name:'DT_RowIndex'},
+                {data:'location.regency', name :'location.regency'},
+                {data:'jumlah', name :'jumlah'}
+              ],
+              columnDefs: [
+                { className: 'text-center', targets: [0] },
+                { render: jQuery.fn.dataTable.render.number(".", ".", 0,),  targets: [2] },
+                {"targets": '_all', "defaultContent": ""},
+              ],
+              // dom: 'lBfrtip',
+
+            });
+
+            var table_location_stat_city_ncp = jQuery('#table_location_stat_city_ncp').DataTable({
+              processing:false,
+              serverSide:false,
+              order : [[ 0, "asc" ]],
+              ajax: "{{ route('getCityNCP.consumer') }}",
+              columns: [
+                {data:'DT_RowIndex', name:'DT_RowIndex'},
+                {data:'location.regency', name :'location.regency'},
+                {data:'jumlah', name :'jumlah'}
+              ],
+              columnDefs: [
+                { className: 'text-center', targets: [0] },
+                { render: jQuery.fn.dataTable.render.number(".", ".", 0,),  targets: [2] },
+                {"targets": '_all', "defaultContent": ""},
+              ],
+              // dom: 'lBfrtip',
+
+            });
 
             var table_location_stat_district = jQuery('#table_location_stat_district').DataTable({
               processing:false,
