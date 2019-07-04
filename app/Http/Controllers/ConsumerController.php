@@ -41,6 +41,19 @@ class ConsumerController extends Controller
         ]);
     }
 
+    public function getCityConsumer()
+    {
+        $data          = Consumer::selectRaw('city, count(*) as jumlah')
+                                        ->groupBy('city')
+                                        ->with(['location'])
+                                        ->orderByRaw('jumlah DESC')
+                                        ->get();
+
+        $datatables = Datatables::of($data)
+                        ->addIndexColumn();
+        return $datatables->make(true);   
+    }
+
     // LOCATION BY 121 FUNCTION
     public function location121Consumer()
     {
@@ -214,105 +227,8 @@ class ConsumerController extends Controller
         return $datatables->make(true);
     }
 
-    public function getCityConsumer()
-    {
-        $city = Consumer::selectRaw('city, count(*) as jumlah')
-            ->groupBy('city')
-            ->with(['location'])
-            ->orderByRaw('jumlah DESC')
-            ->get();
+   
 
-        $datatables = Datatables::of($city)
-            ->addIndexColumn();
-        return $datatables->make(true);
-    }
-
-    public function locationNCPConsumer()
-    {
-        return view('location_stat_ncp', [
-            'judul'            => 'Consumer Location - BatDE',
-            'page'             => 'location_consumer_ncp',
-        ]);
-    }
-
-    public function getCityNCPConsumer()
-    {
-        $city = Consumer::selectRaw('city, count(*) as jumlah')
-            ->groupBy('city')
-            ->where('source', 'ncp')
-            ->with(['location'])
-            ->orderByRaw('jumlah DESC')
-            ->get();
-
-        $datatables = Datatables::of($city)
-            ->addIndexColumn();
-        return $datatables->make(true);
-    }
-
-    public function location121Consumer()
-    {
-        return view('location_stat_121', [
-            'judul'            => 'Consumer Location - BatDE',
-            'page'             => 'location_consumer_121',
-        ]);
-    }
-
-    public function getCity121Consumer()
-    {
-        $city = Consumer::selectRaw('city, count(*) as jumlah')
-            ->groupBy('city')
-            ->where('source', '121')
-            ->with(['location'])
-            ->orderByRaw('jumlah DESC')
-            ->get();
-
-        $datatables = Datatables::of($city)
-            ->addIndexColumn();
-        return $datatables->make(true);
-    }
-
-    public function locationEventConsumer()
-    {
-        return view('location_stat_event', [
-            'judul'            => 'Consumer Location - BatDE',
-            'page'             => 'location_consumer_event',
-        ]);
-    }
-    public function getCityEventConsumer()
-    {
-        $city = Consumer::selectRaw('city, count(*) as jumlah')
-            ->groupBy('city')
-            ->where('source', 'event')
-            ->with(['location'])
-            ->orderByRaw('jumlah DESC')
-            ->get();
-
-        $datatables = Datatables::of($city)
-            ->addIndexColumn();
-        return $datatables->make(true);
-    }
-
-    public function locationSSConsumer()
-    {
-        return view('location_stat_ss', [
-            'judul'            => 'Consumer Location - BatDE',
-            'page'             => 'location_consumer_ss',
-        ]);
-    }
-
-    public function getCitySSConsumer()
-    {
-        $city = Consumer::selectRaw('city, count(*) as jumlah')
-            ->groupBy('city')
-            ->where('source', 'ss')
-            ->with(['location'])
-            ->orderByRaw('jumlah DESC')
-            ->get();
-
-        $datatables = Datatables::of($city)
-            ->addIndexColumn();
-        return $datatables->make(true);
-    }
 
     // Product Type Function
     public function productType()
