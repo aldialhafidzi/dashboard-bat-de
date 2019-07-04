@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DataTables;
 use App\Brand;
 use App\Product;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class ProductMasterController extends Controller
@@ -17,11 +19,14 @@ class ProductMasterController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        return view('product_master', 
-                            [ 'judul'       => 'Dashboard BatDE',
-                              'page'        => 'product-master',
-                              'brands'      => $brands
-                            ]);
+        return view(
+            'product_master',
+            [
+                'judul'       => 'Dashboard BatDE',
+                'page'        => 'product-master',
+                'brands'      => $brands
+            ]
+        );
     }
 
     /**
@@ -113,13 +118,18 @@ class ProductMasterController extends Controller
 
     public function getAllProduct()
     {
-      $product = Product::orderBy('price', 'DESC')->get();
-      $datatables = Datatables::of($product)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($product){
-                               return '<a onclick="editProductForm('.$product->pid.')" style="color : #FFF;" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit"></span> Edit</a>'.' '.
-                                      '<a onclick="deleteProductForm('.$product->pid.')" style="color : #FFF;" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus_data" data-backdrop="static" data-keyboard="false"><span class="glyphicon glyphicon-trash"></span> Delete</a>';
-                             });
-       return $datatables->make(true);
+        $product = Product::orderBy('price', 'DESC')->get();
+        $datatables = Datatables::of($product)
+            ->addIndexColumn()
+            ->addColumn('action', function ($product) {
+                return '<a onclick="editProductForm(' . $product->pid . ')" style="color : #FFF;" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit"></span> Edit</a>' . ' ' .
+                    '<a onclick="deleteProductForm(' . $product->pid . ')" style="color : #FFF;" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus_data" data-backdrop="static" data-keyboard="false"><span class="glyphicon glyphicon-trash"></span> Delete</a>';
+            });
+        return $datatables->make(true);
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new ProductExport, 'Product.xlsx');
     }
 }

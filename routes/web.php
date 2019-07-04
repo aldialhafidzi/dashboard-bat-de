@@ -54,8 +54,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('product', 'ProductMasterController');
     Route::get('/get-product-master', 'ProductMasterController@getAllProduct')->name('getAllProduct');
+    Route::get('product-export-excel', 'ProductMasterController@export_excel');
 
     Route::resource('location', 'LocationController');
     Route::get('/get-location', 'LocationController@getAllLocation')->name('getAllLocation');
+    Route::get('location-export-excel', 'LocationController@export_excel');
     Route::get('/get-district', 'LocationController@getDistrict')->name('getDistrict');
 });

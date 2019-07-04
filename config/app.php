@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Carbon' => 'Carbon\Carbon',
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
